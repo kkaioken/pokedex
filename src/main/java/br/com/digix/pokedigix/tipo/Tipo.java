@@ -16,8 +16,8 @@ public class Tipo {
 	@Column(nullable = false, length = 15)
 	private String nome;
 
-	public Tipo(String nomeEsperado) {
-		this.nome = nomeEsperado;
+	public Tipo(String nome) {
+		this.nome = nome;
 	}
 
 	public String getNome() {

@@ -8,12 +8,12 @@ public class TipoTest {
 	@Test
 	public void deve_poder_criar_um_tipo() {
 		//Arrange		
-		String nomeEsperado = "Fogo";
+		String nome = "Fogo";
 
 		//Act
-		Tipo tipo = new Tipo(nomeEsperado);
+		Tipo tipo = new Tipo(nome);
 
 		//Assert
-		assertEquals(nomeEsperado, tipo.getNome());
+		assertEquals(nome, tipo.getNome());
 	}
 }
