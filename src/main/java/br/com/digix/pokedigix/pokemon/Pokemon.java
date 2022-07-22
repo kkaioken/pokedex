@@ -1,15 +1,23 @@
 package br.com.digix.pokedigix.pokemon;
 
 public class Pokemon {
+
+
 	private int id;
+
 	private String nome;
+
 	private int peso;
+
 	private int altura;
+
 	private String genero;
+
 	private int nmrPokedex;
+
 	private int idTreinador;
-	public Pokemon(int id, String nome, int peso, int altura, String genero, int nmrPokedex, int idTreinador) {
-		this.id = id;
+	
+	public Pokemon(String nome, int peso, int altura, String genero, int nmrPokedex, int idTreinador) {
 		this.nome = nome;
 		this.peso = peso;
 		this.altura = altura;

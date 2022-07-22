@@ -4,14 +4,12 @@ public class Treinador {
 	private String nome;
 	private int dinheiro;
 	private int nivel;
-	private int idIndereco;
 	
 	public Treinador(int id, String nome, int dinheiro, int nivel, int idIndereco) {
 		this.id = id;
 		this.nome = nome;
 		this.dinheiro = dinheiro;
 		this.nivel = nivel;
-		this.idIndereco = idIndereco;
 	}
 	public int getId() {
 		return id;
@@ -36,11 +34,5 @@ public class Treinador {
 	}
 	public void setNivel(int nivel) {
 		this.nivel = nivel;
-	}
-	public int getIdIndereco() {
-		return idIndereco;
-	}
-	public void setIdIndereco(int idIndereco) {
-		this.idIndereco = idIndereco;
 	}
 }
