@@ -1,6 +1,7 @@
 package br.com.digix.pokedigix.pokemon;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,18 +38,12 @@ public class PokemonTest {
 
 	@Test
 	public void deve_cadastrar_um_tipo_para_o_pokemon() {
-		String nome = "Pikachu";
-		double altura = 0.6;
-		double peso = 13.3;
-		Genero genero = Genero.MASCULINO;
-		int nivel = 5;
-		int numeroPokedex = 25;
-		int felicidade = 100;
-		List<Tipo> tipos = new ArrayList<>();
-		tipos.add( new Tipo("Eletrico"));
-		Pokemon pikachu = new Pokemon(nome, altura, peso, genero, nivel, numeroPokedex, felicidade, tipos);
+		Tipo tipo = new Tipo("eletrico");
 
-		assertEquals(tipos,pikachu.getTipos());
+		Pokemon pikachu = new PokemonBuilder().comTipo(tipo).construir();
+	
+
+		assertTrue(pikachu.getTipos().contains(tipo));
 
 	}
 }

@@ -2,6 +2,7 @@ package br.com.digix.pokedigix.pokemon;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import br.com.digix.pokedigix.ataque.Ataque;
 import br.com.digix.pokedigix.tipo.Tipo;
 
 @Entity
@@ -18,7 +20,7 @@ public class Pokemon {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Long id;
 
 	@Column(length = 15, nullable = false)
 	private String nome;
@@ -41,15 +43,21 @@ public class Pokemon {
 	@Column(nullable =  false)
 	private int nivel;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(
 			name = "pokemon_tipo",
 			joinColumns = @JoinColumn(name = "pokemon_id"),
 			inverseJoinColumns = @JoinColumn(name = "tipo_id"))
 	private Collection<Tipo> tipos;
 
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(
+		name = "pokemon_ataque",
+		joinColumns = @JoinColumn(name = "ataque_id"))
+	private Collection<Ataque> ataques;
+
 	
-	public Pokemon(String nome, double altura, double peso, Genero genero, int nivel, int numeroPokedex, int felicidade, Collection<Tipo> tipos) {
+	public Pokemon(String nome, double altura, double peso, Genero genero, int nivel, int numeroPokedex, int felicidade, Collection<Tipo> tipos, Collection<Ataque> ataques2) {
 		this.nome = nome;
 		this.peso = peso;
 		this.altura = altura;
@@ -59,10 +67,10 @@ public class Pokemon {
 		this.felicidade = felicidade;
 		this.tipos = tipos;
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNome() {
