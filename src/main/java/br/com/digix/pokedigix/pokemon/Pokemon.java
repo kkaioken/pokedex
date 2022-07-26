@@ -57,7 +57,7 @@ public class Pokemon {
 	private Collection<Ataque> ataques;
 
 	
-	public Pokemon(String nome, double altura, double peso, Genero genero, int nivel, int numeroPokedex, int felicidade, Collection<Tipo> tipos, Collection<Ataque> ataques2) {
+	public Pokemon(String nome, double altura, double peso, Genero genero, int nivel, int numeroPokedex, int felicidade, Collection<Tipo> tipos, Collection<Ataque> ataques) {
 		this.nome = nome;
 		this.peso = peso;
 		this.altura = altura;
@@ -66,6 +66,7 @@ public class Pokemon {
 		this.numeroPokedex = numeroPokedex;
 		this.felicidade = felicidade;
 		this.tipos = tipos;
+		this.ataques = ataques;
 	}
 	public Long getId() {
 		return id;
@@ -117,5 +118,8 @@ public class Pokemon {
 	}
 	public Collection<Tipo> getTipos() {
 		return tipos;
+	}
+	public Collection<Ataque> getAtaques() {
+		return this.ataques;
 	}
 }

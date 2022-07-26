@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.digix.pokedigix.ataque.Ataque;
 import br.com.digix.pokedigix.tipo.Tipo;
 
 public class PokemonTest {
@@ -21,10 +22,11 @@ public class PokemonTest {
 		int numeroPokedex = 25;
 		int felicidade = 100;
 		List<Tipo> tipos = new ArrayList<>();
+		List<Ataque> ataques = new ArrayList<>();
 		tipos.add( new Tipo("Eletrico"));
 
 
-		Pokemon pikachu = new Pokemon(nome, altura, peso, genero, nivel, numeroPokedex, felicidade, tipos);
+		Pokemon pikachu = new Pokemon(nome, altura, peso, genero, nivel, numeroPokedex, felicidade, tipos, ataques);
 
 		assertEquals(nome, pikachu.getNome());
 		assertEquals(altura, pikachu.getAltura());

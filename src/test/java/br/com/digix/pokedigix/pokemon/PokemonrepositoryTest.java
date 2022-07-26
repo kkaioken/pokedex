@@ -11,10 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import br.com.digix.pokedigix.PokedigixApplication;
 import br.com.digix.pokedigix.ataque.Ataque;
 import br.com.digix.pokedigix.ataque.AtaqueBuilder;
-import br.com.digix.pokedigix.ataque.AtaqueRepository;
 import br.com.digix.pokedigix.tipo.Tipo;
 
 @DataJpaTest
@@ -33,8 +31,9 @@ public class PokemonRepositoryTest {
 		int numeroPokedex = 25;
 		int felicidade = 100;
 		List<Tipo> tipos = new ArrayList<>();
+		List<Ataque> ataques = new ArrayList<>();
 		tipos.add(new Tipo("Eletrico"));
-		Pokemon pikachu = new Pokemon(nome, peso, altura, genero, nivel, numeroPokedex, felicidade, tipos);
+		Pokemon pikachu = new Pokemon(nome, peso, altura, genero, nivel, numeroPokedex, felicidade, tipos, ataques);
 
 		pokemonRepository.save(pikachu);
 

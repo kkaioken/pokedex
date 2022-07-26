@@ -1,5 +1,7 @@
 package br.com.digix.pokedigix.ataque;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,8 +9,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import br.com.digix.pokedigix.pokemon.Pokemon;
 import br.com.digix.pokedigix.tipo.Tipo;
 
 @Entity
@@ -38,6 +42,9 @@ public class Ataque {
 
 	@ManyToOne
 	private Tipo tipo;
+
+	@ManyToMany(mappedBy = "ataques")
+	private Collection<Pokemon> pokemons;
 
 	public Ataque(String nome,
 			int pA,
@@ -113,5 +120,9 @@ public class Ataque {
 
 	public Tipo getTipo() {
 		return tipo;
+	}
+
+	public Collection<Pokemon> getPokemons() {
+		return pokemons;
 	}
 }
