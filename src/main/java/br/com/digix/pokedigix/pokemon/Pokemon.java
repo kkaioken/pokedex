@@ -1,29 +1,63 @@
 package br.com.digix.pokedigix.pokemon;
 
+import java.util.Collection;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+import br.com.digix.pokedigix.tipo.Tipo;
+
+@Entity
 public class Pokemon {
 
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
+	@Column(length = 15, nullable = false)
 	private String nome;
 
-	private int peso;
+	@Column(nullable = false)
+	private double peso;
 
-	private int altura;
+	@Column(nullable = false)
+	private double altura;
 
-	private String genero;
+	@Column(length = 10, nullable = false)
+	private Genero genero;
 
-	private int nmrPokedex;
+	@Column(nullable = false)
+	private int numeroPokedex;
 
-	private int idTreinador;
+	@Column(nullable = false)
+	private int felicidade;
+
+	@Column(nullable =  false)
+	private int nivel;
+
+	@ManyToMany
+	@JoinTable(
+			name = "pokemon_tipo",
+			joinColumns = @JoinColumn(name = "pokemon_id"),
+			inverseJoinColumns = @JoinColumn(name = "tipo_id"))
+	private Collection<Tipo> tipos;
+
 	
-	public Pokemon(String nome, int peso, int altura, String genero, int nmrPokedex, int idTreinador) {
+	public Pokemon(String nome, double altura, double peso, Genero genero, int nivel, int numeroPokedex, int felicidade, Collection<Tipo> tipos) {
 		this.nome = nome;
 		this.peso = peso;
 		this.altura = altura;
 		this.genero = genero;
-		this.nmrPokedex = nmrPokedex;
-		this.idTreinador = idTreinador;
+		this.nivel = nivel;
+		this.numeroPokedex = numeroPokedex;
+		this.felicidade = felicidade;
+		this.tipos = tipos;
 	}
 	public int getId() {
 		return id;
@@ -37,34 +71,43 @@ public class Pokemon {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public int getPeso() {
+	public double getPeso() {
 		return peso;
 	}
 	public void setPeso(int peso) {
 		this.peso = peso;
 	}
-	public int getAltura() {
+	public double getAltura() {
 		return altura;
 	}
 	public void setAltura(int altura) {
 		this.altura = altura;
 	}
-	public String getGenero() {
+	public Genero getGenero() {
 		return genero;
 	}
-	public void setGenero(String genero) {
+	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
-	public int getNmrPokedex() {
-		return nmrPokedex;
+	public int getNumeroPokedex() {
+		return numeroPokedex;
 	}
-	public void setNmrPokedex(int nmrPokedex) {
-		this.nmrPokedex = nmrPokedex;
+	public void setNumeroPokedex(int numeroPokedex) {
+		this.numeroPokedex = numeroPokedex;
 	}
-	public int getIdTreinador() {
-		return idTreinador;
+	public int getFelicidade() {
+		return felicidade;
 	}
-	public void setIdTreinador(int idTreinador) {
-		this.idTreinador = idTreinador;
+	public void setFelicidade(int felicidade) {
+		this.felicidade = felicidade;
+	}
+	public int getNivel() {
+		return nivel;
+	}
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
+	}
+	public Collection<Tipo> getTipos() {
+		return tipos;
 	}
 }

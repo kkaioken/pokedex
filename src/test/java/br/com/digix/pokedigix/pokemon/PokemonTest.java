@@ -1,10 +1,54 @@
 package br.com.digix.pokedigix.pokemon;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
+import br.com.digix.pokedigix.tipo.Tipo;
 
 public class PokemonTest {
 	@Test
-	void deve_criar_um_pokemon() {
-		
+	public void deve_criar_um_pokemon() {
+		String nome = "Pikachu";
+		double altura = 0.6;
+		double peso = 13.3;
+		Genero genero = Genero.MASCULINO;
+		int nivel = 5;
+		int numeroPokedex = 25;
+		int felicidade = 100;
+		List<Tipo> tipos = new ArrayList<>();
+		tipos.add( new Tipo("Eletrico"));
+
+
+		Pokemon pikachu = new Pokemon(nome, altura, peso, genero, nivel, numeroPokedex, felicidade, tipos);
+
+		assertEquals(nome, pikachu.getNome());
+		assertEquals(altura, pikachu.getAltura());
+		assertEquals(peso, pikachu.getPeso());
+		assertEquals(genero, pikachu.getGenero());
+		assertEquals(nivel, pikachu.getNivel());
+		assertEquals(numeroPokedex, pikachu.getNumeroPokedex());
+		assertEquals(felicidade, pikachu.getFelicidade());
+		assertEquals(tipos, pikachu.getTipos());
+	}
+
+	@Test
+	public void deve_cadastrar_um_tipo_para_o_pokemon() {
+		String nome = "Pikachu";
+		double altura = 0.6;
+		double peso = 13.3;
+		Genero genero = Genero.MASCULINO;
+		int nivel = 5;
+		int numeroPokedex = 25;
+		int felicidade = 100;
+		List<Tipo> tipos = new ArrayList<>();
+		tipos.add( new Tipo("Eletrico"));
+		Pokemon pikachu = new Pokemon(nome, altura, peso, genero, nivel, numeroPokedex, felicidade, tipos);
+
+		assertEquals(tipos,pikachu.getTipos());
+
 	}
 }

@@ -8,7 +8,7 @@ import br.com.digix.pokedigix.tipo.Tipo;
 
 public class AtaqueTest {
 	@Test
-	void deve_criar_um_ataque() {
+	public void deve_criar_um_ataque() {
 		// Arrange
 		String nome = "Choque do Trovão";
 		int forca = 90;
