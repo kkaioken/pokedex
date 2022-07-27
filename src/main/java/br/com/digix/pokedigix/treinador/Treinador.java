@@ -1,38 +1,59 @@
 package br.com.digix.pokedigix.treinador;
-public class Treinador {
-	private int id;
-	private String nome;
-	private int dinheiro;
-	private int nivel;
-	
-	public Treinador(int id, String nome, int dinheiro, int nivel, int idIndereco) {
-		this.id = id;
-		this.nome = nome;
-		this.dinheiro = dinheiro;
-		this.nivel = nivel;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public int getDinheiro() {
-		return dinheiro;
-	}
-	public void setDinheiro(int dinheiro) {
-		this.dinheiro = dinheiro;
-	}
-	public int getNivel() {
-		return nivel;
-	}
-	public void setNivel(int nivel) {
-		this.nivel = nivel;
-	}
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import br.com.digix.pokedigix.endereco.Endereco;
+import br.com.digix.pokedigix.lider.Insignia;
+import br.com.digix.pokedigix.personagem.Personagem;
+import br.com.digix.pokedigix.pokemon.Pokemon;
+
+@Entity
+public class Treinador extends Personagem {
+
+    @Column(nullable = false)
+    private int dinheiro;
+    @Column(nullable = false)
+    private int nivel;
+
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = Insignia.class)
+    @Column(name = "insignia")
+    private Collection<Insignia> insignias;
+
+    public Treinador(String nome, Endereco endereco, 
+                    Pokemon primeiroPokemon) {
+        super(nome, endereco);
+        this.capturar(primeiroPokemon);
+        this.dinheiro = 3000;
+        this.nivel = 1;
+        this.insignias = new ArrayList<>();
+    }
+
+    public void capturar(Pokemon pokemon) {
+        super.pokemons.add(pokemon);
+    }
+
+    public void receber(Insignia insignia) {
+        this.insignias.add(insignia);
+    }
+
+    public int getDinheiro() {
+        return dinheiro;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public Collection<Insignia> getInsignias() {
+        return insignias;
+    }
+
 }
