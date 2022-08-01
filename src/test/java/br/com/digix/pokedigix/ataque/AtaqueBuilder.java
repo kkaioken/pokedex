@@ -13,17 +13,37 @@ public class AtaqueBuilder {
 	private Tipo tipo;
 
 	public AtaqueBuilder() {
-		this.nome = "Choque do Trovão";
 		this.forca = 90;
 		this.precisao = 100;
 		this.pA = 80;
-		this.descricao = "Tomale choqueee!!";
 		this.categoria = Categoria.ESPECIAL;
+		this.nome = "Choque do Trovão";
+		this.descricao = "Tomale choqueee!!";
 		this.tipo = new Tipo("Normal");
 	}
+	
+	public Ataque construir() throws Exception {
+		if(this.categoria.equals(Categoria.EFEITO)) {
+			return new Ataque(nome, pA, precisao, descricao);
+		} else {
+			return new Ataque(nome, pA, categoria, precisao, descricao, forca, tipo);
+		}
+	}
 
-	public Ataque construir() {
-		return new Ataque(nome, pA, categoria, precisao, descricao, forca, tipo);
+	public AtaqueBuilder comCategoriaEfeito() {
+		this.categoria = Categoria.EFEITO;
+		return this;
+	}
+
+
+	public AtaqueBuilder comForca(int forca) {
+		this.forca = forca;
+		return this;
+	}
+
+	public AtaqueBuilder comCategoria(Categoria categoria) {
+		this.categoria = categoria;
+		return this;
 	}
 
 	public AtaqueBuilder comTipo(Tipo tipoEsperado) {
@@ -31,4 +51,10 @@ public class AtaqueBuilder {
 		return this;
 	}
 	
+	public AtaqueBuilder comPrecisao(int precisao) {
+		this.precisao = precisao;
+		return this;
+	}
+
+
 }

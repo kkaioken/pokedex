@@ -20,7 +20,7 @@ public class AtaqueRepositoryTest {
 	private TipoRepository  tipoRepository;
 
 	@Test
-	public void deve_salvar_um_ataque() {
+	public void deve_salvar_um_ataque() throws Exception {
 		String nome = "Choque do Trovão";
 		int forca = 90;
 		int precisao = 100;
@@ -37,7 +37,7 @@ public class AtaqueRepositoryTest {
 	}
 
 	@Test
-	public void deve_salvar_um_tipo_para_um_ataque() {
+	public void deve_salvar_um_tipo_para_um_ataque() throws Exception {
 		int pA = 80;
 		int forca = 90;
 		int precisao = 100;

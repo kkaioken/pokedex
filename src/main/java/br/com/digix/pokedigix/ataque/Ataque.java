@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 
 import br.com.digix.pokedigix.pokemon.Pokemon;
 import br.com.digix.pokedigix.tipo.Tipo;
+import br.com.digix.pokedigix.tipo.TipoInvalidaParaCategoriaException;
 
 @Entity
 public class Ataque {
@@ -52,7 +53,11 @@ public class Ataque {
 			int precisao,
 			String descricao,
 			int forca,
-			Tipo tipo) {
+			Tipo tipo) throws Exception {
+
+		validarPrecisao(precisao);
+		validarForca(categoria, forca);
+		validarTipo(categoria, tipo);
 		this.nome = nome;
 		this.PA = pA;
 		this.categoria = categoria;
@@ -60,6 +65,34 @@ public class Ataque {
 		this.descricao = descricao;
 		this.forca = forca;
 		this.tipo = tipo;
+	}
+
+	private void validarTipo(Categoria categoria, Tipo tipo) throws Exception {
+		if (!categoria.equals(Categoria.EFEITO) && tipo == null) {
+			throw new TipoInvalidaParaCategoriaException(categoria);
+		}
+	}
+
+	private void validarForca(Categoria categoria, int forca) throws Exception {
+		if (!categoria.equals(Categoria.EFEITO) && forca <= 0) {
+			throw new ForcaInvalidaParaCategoriaException(categoria);
+		}
+	}
+
+	public Ataque(String nome, int pA, int precisao, String descricao) throws Exception {
+		validarPrecisao(precisao);
+		this.precisao = precisao;
+		this.PA = pA;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.categoria = Categoria.EFEITO;
+	}
+
+	private void validarPrecisao(int precisao) throws Exception {
+		if (precisao < 0 || precisao > 100) {
+			throw new PrecisaoInvalidaException();
+
+		}
 	}
 
 	public String getNome() {
