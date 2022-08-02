@@ -22,7 +22,7 @@ public class PokemonRepositoryTest {
 	private PokemonRepository pokemonRepository;
 
 	@Test
-	public void deve_salvar_um_pokemon() {
+	public void deve_salvar_um_pokemon() throws Exception {
 		String nome = "Pikachu";
 		double altura = 0.6;
 		double peso = 13.3;
@@ -42,7 +42,7 @@ public class PokemonRepositoryTest {
 	}
 
 	@Test
-	public void deve_salvar_um_pokemon_com_um_tipo() {
+	public void deve_salvar_um_pokemon_com_um_tipo() throws Exception {
 		int quantidadeDeTiposEsperada = 1;
 		Tipo eletrico = new Tipo("Eletrico");
 		Pokemon pikachu = new PokemonBuilder().comTipo(eletrico).construir();

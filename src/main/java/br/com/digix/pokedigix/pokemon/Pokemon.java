@@ -57,7 +57,9 @@ public class Pokemon {
 	private Collection<Ataque> ataques;
 
 	
-	public Pokemon(String nome, double altura, double peso, Genero genero, int nivel, int numeroPokedex, int felicidade, Collection<Tipo> tipos, Collection<Ataque> ataques) {
+	public Pokemon(String nome, double altura, double peso, Genero genero, int nivel, int numeroPokedex, int felicidade, Collection<Tipo> tipos, Collection<Ataque> ataques) throws Exception {
+		validarNivel(nivel);
+		validarFelicidade(felicidade);
 		this.nome = nome;
 		this.peso = peso;
 		this.altura = altura;
@@ -67,6 +69,16 @@ public class Pokemon {
 		this.felicidade = felicidade;
 		this.tipos = tipos;
 		this.ataques = ataques;
+	}
+	private void validarFelicidade(int felicidade) throws Exception {
+		if (felicidade <  0 || felicidade > 100) {
+			throw new FelicidadeInvalidaException();
+		}
+	}
+	private void validarNivel(int nivel) throws Exception {
+		if (nivel <  1 || nivel > 100) {
+			throw new NivelInvalidoException();
+		}
 	}
 	public Long getId() {
 		return id;

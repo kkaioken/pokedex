@@ -35,7 +35,7 @@ public class PokemonBuilder {
 		return this;
 	}
 
-	public Pokemon construir() {
+	public Pokemon construir() throws Exception {
 		return new Pokemon(nome, altura, peso, genero, nivel, numeroPokedex, felicidade, tipos, ataques);
 	}
 
@@ -43,5 +43,14 @@ public class PokemonBuilder {
 		this.tipos.add(tipo);
 		return this;
 	}
-	
+
+    public PokemonBuilder comNivel(int nivel) {
+        this.nivel = nivel;
+        return this;
+    }
+
+    public PokemonBuilder comFelicidade(int felicidade) {
+        this.felicidade = felicidade;
+        return this;
+    }
 }
