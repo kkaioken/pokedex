@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import br.com.digix.pokedigix.personagem.LimiteDePokemonException;
+
 @DataJpaTest
 public class TreinadorRepositoryTest {
 
@@ -13,8 +15,8 @@ public class TreinadorRepositoryTest {
 	private TreinadorRepository treinadorRepository;
 	
 	@Test
-	public void deve_salvar_um_treinador() {
-		Treinador treinador = new TreinadorBiulder().construir();
+	public void deve_salvar_um_treinador() throws LimiteDePokemonException {
+		Treinador treinador = new TreinadorBuilder().construir();
 
 		treinadorRepository.save(treinador);
 
