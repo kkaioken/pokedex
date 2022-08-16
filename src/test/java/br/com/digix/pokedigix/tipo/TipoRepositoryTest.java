@@ -1,5 +1,6 @@
 package br.com.digix.pokedigix.tipo;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -32,9 +33,23 @@ public class TipoRepositoryTest {
 		Tipo tipo = new Tipo(nome);
 		tipoRepository.save(tipo);
 
-		Collection<Tipo> tiposRetornados = tipoRepository .findByNome(nome);
+		Collection<Tipo> tiposRetornados = tipoRepository .findByNomeContaining(nome);
 
 		assertTrue(tiposRetornados.contains(tipo));
+	}
+
+	@Test 
+	public void deve_poder_remover_pelo_nome() {
+		String fada = "Fada";
+		String fantasma = "Fantasma ";
+		tipoRepository.save(new Tipo(fada));
+		tipoRepository.save(new Tipo(fantasma));
+		String termo = "Fa";
+		Long qunatidadeEsperada= 2l;
+
+		Long quantidadeRemovida = tipoRepository.deleteByNomeContaining(termo);
+
+		assertEquals(qunatidadeEsperada, quantidadeRemovida);
 	}
 
 }
