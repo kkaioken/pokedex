@@ -35,15 +35,7 @@ public class AtaqueController {
 		}
 		Collection<AtaqueResponseDTO> ataquesRetornados = new ArrayList<>();
 		for (Ataque ataque : ataques) {
-			ataquesRetornados.add(new AtaqueResponseDTO(
-				ataque.getId(),
-				ataque.getForca(),
-				ataque.getPrecisao(),
-				ataque.getNome(),
-				ataque.getPA(),
-				ataque.getCategoria(),
-				ataque.getDescricao(),
-				tipoResponseDTO));
+			ataquesRetornados.add(new AtaqueResponseDTO(ataque.getId(), 0, 0, ataque.getNome(), 0, null, nome, null));
 		}
 		return ResponseEntity.ok(ataquesRetornados);
 	}
@@ -53,16 +45,16 @@ public class AtaqueController {
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<AtaqueResponseDTO> buscarPorId(@PathVariable Long id) {
 		Ataque ataque = ataqueRepository.findById(id).get();
-
+		
 		TipoResponseDTO tipoResponseDTO = new TipoResponseDTO(
-				ataque.getTipo().getId(),
-				ataque.getTipo().getNome());
+			ataque.getTipo().getId(),
+		 ataque.getTipo().getNome());
 
 		return ResponseEntity.ok(new AtaqueResponseDTO(
 				ataque.getId(),
 				ataque.getForca(),
 				ataque.getPrecisao(),
-				ataque.getNome(),
+				ataque.getNome(), 
 				ataque.getPA(),
 				ataque.getCategoria(),
 				ataque.getDescricao(),

@@ -63,17 +63,23 @@ public class TipoController {
 		return ResponseEntity.status(HttpStatus.OK).body(new TipoResponseDTO(tipo.getId(),tipo.getNome()));
 	}
 
-	@DeleteMapping(path = "/{id}")
-	public void deleteById(@PathVariable Long id) {
-		tipoRepository.deleteById(id);
-	}
+	@Operation(summary = "Deletar um tipo pelo id")
+    @ApiResponse(responseCode = "204")
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<?> removerTipoPorId(@PathVariable Long id) {
+        tipoRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 
-	@DeleteMapping
-	@Transactional
-	public void removerTipoPorNome(@RequestParam(required = true) String termo) {
-		tipoRepository.deleteByNomeContaining(termo);
-	}
-
+    @Operation(summary = "Deletar um tipo pelo seu nome parcial ou completo")
+    @ApiResponse(responseCode = "204")
+    @DeleteMapping
+    @Transactional
+    public ResponseEntity<?> removerTipoPorNome(@RequestParam(required = true) String termo) {
+        tipoRepository.deleteByNomeContaining(termo);
+        return ResponseEntity.noContent().build();
+    }
+	
 	@Operation(summary = "Atualizar o Tipo")
 	@ApiResponse(responseCode = "204")
 	@PutMapping(path = "/{id}", consumes = "application/json")
