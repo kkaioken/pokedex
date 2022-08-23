@@ -55,7 +55,7 @@ public class Ataque {
 			int precisao,
 			String descricao,
 			int forca,
-			Tipo tipo) throws Exception {
+			Tipo tipo) throws TipoInvalidaParaCategoriaException, PrecisaoInvalidaException, ForcaInvalidaParaCategoriaException  {
 
 		validarPrecisao(precisao);
 		validarForca(categoria, forca);
@@ -69,19 +69,19 @@ public class Ataque {
 		this.tipo = tipo;
 	}
 
-	private void validarTipo(Categoria categoria, Tipo tipo) throws Exception {
+	private void validarTipo(Categoria categoria, Tipo tipo) throws TipoInvalidaParaCategoriaException  {
 		if (!categoria.equals(Categoria.EFEITO) && tipo == null) {
 			throw new TipoInvalidaParaCategoriaException(categoria);
 		}
 	}
 
-	private void validarForca(Categoria categoria, int forca) throws Exception {
+	private void validarForca(Categoria categoria, int forca) throws ForcaInvalidaParaCategoriaException  {
 		if (!categoria.equals(Categoria.EFEITO) && forca <= 0) {
 			throw new ForcaInvalidaParaCategoriaException(categoria);
 		}
 	}
 
-	public Ataque(String nome, int pA, int precisao, String descricao) throws Exception {
+	public Ataque(String nome, int pA, int precisao, String descricao) throws PrecisaoInvalidaException  {
 		validarPrecisao(precisao);
 		this.precisao = precisao;
 		this.PA = pA;
@@ -90,7 +90,7 @@ public class Ataque {
 		this.categoria = Categoria.EFEITO;
 	}
 
-	private void validarPrecisao(int precisao) throws Exception {
+	private void validarPrecisao(int precisao) throws PrecisaoInvalidaException  {
 		if (precisao < 0 || precisao > 100) {
 			throw new PrecisaoInvalidaException();
 
@@ -156,8 +156,13 @@ public class Ataque {
 	public Tipo getTipo() {
 		return tipo;
 	}
+	
+	public void setTipo(Tipo tipo) {
+	}
 
 	public Collection<Pokemon> getPokemons() {
 		return pokemons;
 	}
+
+	
 }

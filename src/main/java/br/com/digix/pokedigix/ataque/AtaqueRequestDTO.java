@@ -62,4 +62,5 @@ public class AtaqueRequestDTO {
 	public void setTipoId(Long tipoId) {
 		this.tipoId = tipoId;
 	}
+
 }
